@@ -12,7 +12,6 @@ do {
     season = prompt('When do you make a purchase? (winter or summer)');
 } while (season.toLowerCase().replaceAll(' ', '') !== 'winter' && season.toLowerCase().replaceAll(' ', '') !== 'summer');
 
-
 do {
     category = prompt('Choose a category (fruits or vegetables)');
 } while (category.toLowerCase().replaceAll(' ', '') !== 'fruits' && category.toLowerCase().replaceAll(' ', '') !== 'vegetables');
