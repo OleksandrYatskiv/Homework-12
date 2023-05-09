@@ -1,170 +1,69 @@
-// vegetables
-cabbage = 8;
-avocado = 30;
-tomato = 10;
+vegetables = ['cabbage', 'avocado', 'tomato'];
+fruits = ['grapes', 'raspberry', 'coconut'];
 
-// fruits
-grapes = 20;
-raspberry = 25;
-coconut = 50;
+vegetablePrices = [8, 30, 10];
+fruitPrices = [20, 25, 50];
+
+season = null;
+category = null;
+basketIndex = null;
+basketName = null;
+basketPrice = null;
+countOfProducts = null;
+price = null;
 
 do {
-    season = prompt('When do you make a purchase? (winter or summer)');
-} while (season.toLowerCase().replaceAll(' ', '') !== 'winter' && season.toLowerCase().replaceAll(' ', '') !== 'summer');
+    season = prompt('When do you make a purchase? (winter or summer)').toLowerCase().replaceAll(' ', '');
+} while (season !== 'winter' && season !== 'summer');
 
 do {
-    category = prompt('Choose a category (fruits or vegetables)');
-} while (category.toLowerCase().replaceAll(' ', '') !== 'fruits' && category.toLowerCase().replaceAll(' ', '') !== 'vegetables');
+    category = prompt('Choose a category (fruits or vegetables)').toLowerCase().replaceAll(' ', '');
+} while (category !== 'fruits' && category !== 'vegetables');
+
+options = null;
+prices = null;
 
 if (category === 'fruits') {
-    do {
-        basket = prompt('Choose a fruit (grapes or raspberry or coconut)');
-    } while (basket.toLowerCase().replaceAll(' ', '') !== 'grapes'
-    && basket.toLowerCase().replaceAll(' ', '') !== 'raspberry'
-        && basket.toLowerCase().replaceAll(' ', '') !== 'coconut');
+    options = fruits;
+    prices = fruitPrices;
 } else if (category === 'vegetables') {
-    do {
-        basket = prompt('Choose a vegetable (cabbage or avocado or tomato)');
-    } while (basket.toLowerCase().replaceAll(' ', '') !== 'cabbage'
-    && basket.toLowerCase().replaceAll(' ', '') !== 'avocado'
-        && basket.toLowerCase().replaceAll(' ', '') !== 'tomato');
+    options = vegetables;
+    prices = vegetablePrices;
 }
 
 do {
-    countOfProducts = prompt(`How many of ${basket} do you need? 
-    (Value must be more then 1.)`);
+    optionsNames = '';
+    for (i = 0; i < options.length; i++) {
+        optionsNames += options[i];
+        if (i !== options.length - 1) {
+            optionsNames += ' or ';
+        }
+    }
+    basket = prompt(`Choose a ${category} (${optionsNames})`).toLowerCase().replaceAll(' ', '');
+    basketIndex = options.indexOf(basket);
+} while (basketIndex === -1);
+
+basketName = options[basketIndex];
+basketPrice = prices[basketIndex];
+
+do {
+    countOfProducts = prompt(`How many of ${basketName} do you need? (Value must be more than 1.)`);
 } while (countOfProducts <= 1);
 
-if (season.toLowerCase().replaceAll(' ', '') === 'winter') {
-    if (category.toLowerCase().replaceAll(' ', '') === 'fruits') {
-        if (basket.toLowerCase().replaceAll(' ', '') === 'grapes') {
-            price = countOfProducts * grapes * 2;
-            document.write(`<div class="product" align="center">
-            <img src="images/fruits/grapes.svg" alt="grapes" width="100" height="100">
-            <p>Selected product: <b>grapes</b></p>
-            <p>Count of grapes: <b>${countOfProducts}</b></p>
-            <p>Selected period: <b>winter</b></p>
-            <p>Selected category: <b>fruits</b></p>
-            <p>Final sum: <b>${price} UAH</b></p>
-            </div>`);
-        } else if (basket.toLowerCase().replaceAll(' ', '') === 'raspberry') {
-            price = countOfProducts * raspberry * 2;
-            document.write(`<div class="product" align="center">
-            <img src="images/fruits/raspberry.svg" alt="raspberry" width="100" height="100">
-            <p>Selected product: <b>raspberry</b></p>
-            <p>Count of raspberries: <b>${countOfProducts}</b></p>
-            <p>Selected period: <b>winter</b></p>
-            <p>Selected category: <b>fruits</b></p>
-            <p>Final sum: <b>${price} UAH</b></p>
-            </div>`);
-        } else if (basket.toLowerCase().replaceAll(' ', '') === 'coconut') {
-            price = countOfProducts * coconut * 2;
-            document.write(`<div class="product" align="center">
-            <img src="images/fruits/coconut.svg" alt="coconut" width="100" height="100">
-            <p>Selected product: <b>coconut</b></p>
-            <p>Count of coconuts: <b>${countOfProducts}</b></p>
-            <p>Selected period: <b>winter</b></p>
-            <p>Selected category: <b>fruits</b></p>
-            <p>Final sum: <b>${price} UAH</b></p>
-            </div>`);
-        }
-    } else if (category.toLowerCase().replaceAll(' ', '') === 'vegetables') {
-        if (basket.toLowerCase().replaceAll(' ', '') === 'cabbage') {
-            price = countOfProducts * cabbage * 2;
-            document.write(`<div class="product" align="center">
-            <img src="images/vegetables/cabbage.svg" alt="cabbage" width="100" height="100">
-            <p>Selected product: <b>cabbage</b></p>
-            <p>Count of cabbages: <b>${countOfProducts}</b></p>
-            <p>Selected period: <b>winter</b></p>
-            <p>Selected category: <b>vegetables</b></p>
-            <p>Final sum: <b>${price} UAH</b></p>
-            </div>`);
-        } else if (basket.toLowerCase().replaceAll(' ', '') === 'avocado') {
-            price = countOfProducts * avocado * 2;
-            document.write(`<div class="product" align="center">
-            <img src="images/vegetables/avocado.svg" alt="avocado" width="100" height="100">
-            <p>Selected product: <b>avocado</b></p>
-            <p>Count of avocados: <b>${countOfProducts}</b></p>
-            <p>Selected period: <b>winter</b></p>
-            <p>Selected category: <b>vegetables</b></p>
-            <p>Final sum: <b>${price} UAH</b></p>
-            </div>`);
-        } else if (basket.toLowerCase().replaceAll(' ', '') === 'tomato') {
-            price = countOfProducts * tomato * 2;
-            document.write(`<div class="product" align="center">
-            <img src="images/vegetables/tomato.svg" alt="tomato" width="100" height="100">
-            <p>Selected product: <b>tomato</b></p>
-            <p>Count of tomatos: <b>${countOfProducts}</b></p>
-            <p>Selected period: <b>winter</b></p>
-            <p>Selected category: <b>vegetables</b></p>
-            <p>Final sum: <b>${price} UAH</b></p>
-            </div>`);
-        }
-    }
-} else if (season.toLowerCase().replaceAll(' ', '') === 'summer') {
-    if (category.toLowerCase().replaceAll(' ', '') === 'fruits') {
-        if (basket.toLowerCase().replaceAll(' ', '') === 'grapes') {
-            price = countOfProducts * grapes * 0.8;
-            document.write(`<div class="product" align="center">
-            <img src="images/fruits/grapes.svg" alt="grapes" width="100" height="100">
-            <p>Selected product: <b>grapes</b></p>
-            <p>Count of grapes: <b>${countOfProducts}</b></p>
-            <p>Selected period: <b>summer</b></p>
-            <p>Selected category: <b>fruits</b></p>
-            <p>Final sum: <b>${price} UAH</b></p>
-            </div>`);
-        } else if (basket.toLowerCase().replaceAll(' ', '') === 'raspberry') {
-            price = countOfProducts * raspberry * 0.8;
-            document.write(`<div class="product" align="center">
-            <img src="images/fruits/raspberry.svg" alt="raspberry" width="100" height="100">
-            <p>Selected product: <b>raspberry</b></p>
-            <p>Count of raspberries: <b>${countOfProducts}</b></p>
-            <p>Selected period: <b>summer</b></p>
-            <p>Selected category: <b>fruits</b></p>
-            <p>Final sum: <b>${price} UAH</b></p>
-            </div>`);
-        } else if (basket.toLowerCase().replaceAll(' ', '') === 'coconut') {
-            price = countOfProducts * coconut * 0.8;
-            document.write(`<div class="product" align="center">
-            <img src="images/fruits/coconut.svg" alt="coconut" width="100" height="100">
-            <p>Selected product: <b>coconut</b></p>
-            <p>Count of coconuts: <b>${countOfProducts}</b></p>
-            <p>Selected period: <b>summer</b></p>
-            <p>Selected category: <b>fruits</b></p>
-            <p>Final sum: <b>${price} UAH</b></p>
-            </div>`);
-        }
-    } else if (category.toLowerCase().replaceAll(' ', '') === 'vegetables') {
-        if (basket.toLowerCase().replaceAll(' ', '') === 'cabbage') {
-            price = countOfProducts * cabbage * 0.8;
-            document.write(`<div class="product" align="center">
-            <img src="images/vegetables/cabbage.svg" alt="cabbage" width="100" height="100">
-            <p>Selected product: <b>cabbage</b></p>
-            <p>Count of cabbages: <b>${countOfProducts}</b></p>
-            <p>Selected period: <b>summer</b></p>
-            <p>Selected category: <b>vegetables</b></p>
-            <p>Final sum: <b>${price} UAH</b></p>
-            </div>`);
-        } else if (basket.toLowerCase().replaceAll(' ', '') === 'avocado') {
-            price = countOfProducts * avocado * 0.8;
-            document.write(`<div class="product" align="center">
-            <img src="images/vegetables/avocado.svg" alt="avocado" width="100" height="100">
-            <p>Selected product: <b>avocado</b></p>
-            <p>Count of avocados: <b>${countOfProducts}</b></p>
-            <p>Selected period: <b>summer</b></p>
-            <p>Selected category: <b>vegetables</b></p>
-            <p>Final sum: <b>${price} UAH</b></p>
-            </div>`);
-        } else if (basket.toLowerCase().replaceAll(' ', '') === 'tomato') {
-            price = countOfProducts * tomato * 0.8;
-            document.write(`<div class="product" align="center">
-            <img src="images/vegetables/tomato.svg" alt="tomato" width="100" height="100">
-            <p>Selected product: <b>tomato</b></p>
-            <p>Count of tomatos: <b>${countOfProducts}</b></p>
-            <p>Selected period: <b>summer</b></p>
-            <p>Selected category: <b>vegetables</b></p>
-            <p>Final sum: <b>${price} UAH</b></p>
-            </div>`);
-        }
-    }
+if (season === 'winter') {
+    price = countOfProducts * basketPrice * 2;
+} else if (season === 'summer') {
+    price = countOfProducts * basketPrice * 0.8;
 }
+
+productName = basketName[0].toUpperCase() + basketName.slice(1);
+productImage = `images/${category}/${basketName}.svg`;
+
+document.write(`<div class="product" align="center">
+  <img src="${productImage}" alt="${basketName}" width="100" height="100">
+  <p>Selected product: <b>${productName}</b></p>
+  <p>Count of ${basketName}s: <b>${countOfProducts}</b></p>
+  <p>Selected period: <b>${season}</b></p>
+  <p>Selected category: <b>${category}</b></p>
+  <p>Final sum: <b>${price} UAH</b></p>
+</div>`);
